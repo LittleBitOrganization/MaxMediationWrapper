@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 507a697906e0f4619b5795a5de0617ee
+labels:
+- al_max
+- al_max_export_path-MaxSdk/Scripts/Editor/MaxPostProcessBuildiOS.cs
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

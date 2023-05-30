@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 51d3877b985004bffa12e7d5fa3021eb
+labels:
+- al_max
+- al_max_export_path-MaxSdk/Resources
+- al_max_export_path-MaxSdk\Resources
+- al_max_export_path-\MaxSdk\Resources
+folderAsset: yes
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
