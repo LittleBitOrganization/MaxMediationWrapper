@@ -3,7 +3,7 @@ using LittleBitGames.Ads.AdUnits;
 
 namespace LittleBitGames.Ads.MediationNetworks.MaxSdk
 {
-    public sealed class MaxSdkRewardedAd : MaxAdUnit
+    public sealed class MaxSdkRewardedAd : AdUnitLogic
     {
         private readonly IAdUnitKey _key;
 
