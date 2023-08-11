@@ -12,6 +12,8 @@ namespace LittleBitGames.Ads.MediationNetworks.MaxSdk
         public MaxSdkInitializer(AdsConfig config) => _config = config;
         private bool IsDebugMode => _config.Mode is ExecutionMode.Debug;
 
+        public bool IsInitialized { get; private set; } = false;
+
         public void Initialize()
         {
             if (_config.UmpSettings.IsEnable == false)
@@ -39,6 +41,7 @@ namespace LittleBitGames.Ads.MediationNetworks.MaxSdk
 
             MaxSdkCallbacks.OnSdkInitializedEvent += sdkConfig =>
             {
+                IsInitialized = true;
                 OnMediationInitialized?.Invoke();
                 
                 if (IsDebugMode) global::MaxSdk.ShowMediationDebugger();
