@@ -1,21 +1,24 @@
 using System;
 using System.Collections.Generic;
 using GoogleMobileAds.Ump.Api;
+using LittleBitGames.Ads.Configs;
 using UnityEngine;
 
 public class UMPHandler
 {
+    private readonly UMPSettings _umpSettings;
     private readonly bool _isDebugMode;
 
     public event Action OnConsent;
 
-    public UMPHandler(bool isDebugMode)
+    public UMPHandler(UMPSettings umpSettings, bool isDebugMode)
     {
+        _umpSettings = umpSettings;
         _isDebugMode = isDebugMode;
     }
     public void Init()
     {
-        
+       
         ConsentRequestParameters request = new ConsentRequestParameters
         {
             TagForUnderAgeOfConsent = false,
@@ -23,14 +26,18 @@ public class UMPHandler
         
         if (_isDebugMode)
         {
+            var idTestDevices = new List<string>();
+            idTestDevices.AddRange(_umpSettings.IDTestDevices);
+            idTestDevices.AddRange(new List<string>
+            {
+                "TEST-DEVICE-HASHED-ID",
+                "TEST_EMULATOR"
+            });
+            
             request.ConsentDebugSettings = new ConsentDebugSettings
             {
                 DebugGeography = DebugGeography.EEA,
-                TestDeviceHashedIds = new List<string>
-                {
-                    "TEST-DEVICE-HASHED-ID",
-                    "TEST_EMULATOR"
-                }
+                TestDeviceHashedIds = idTestDevices
             };
         }
 
