@@ -11,6 +11,11 @@ public class UMPHandler
 
     public event Action OnConsent;
 
+    private void Log(string value)
+    {
+        Debug.Log(value);
+    }
+
     public UMPHandler(UMPSettings umpSettings, bool isDebugMode)
     {
         _umpSettings = umpSettings;
@@ -39,8 +44,12 @@ public class UMPHandler
                 DebugGeography = DebugGeography.EEA,
                 TestDeviceHashedIds = idTestDevices
             };
+            
+            Log("UMP inited debug mode");
         }
 
+        
+        Log("Update");
         ConsentInformation.Update(request, OnConsentInfoUpdated);
     }
 
@@ -52,25 +61,34 @@ public class UMPHandler
             return;
         }
             
+     
         if (ConsentInformation.IsConsentFormAvailable())
         {
+            Log("Consent Information is available");
             LoadConsentForm();
+        }
+        else
+        {
+            Log("Consent Information isn't available");
         }
      
     }
 
     private void LoadConsentForm()
     {
+        Log("Load Consent Form");
         ConsentForm.Load(OnLoadConsentForm);
     }
 
     private void OnLoadConsentForm(ConsentForm consentForm, FormError error)
     {
+      
         if (error != null)
         {
             Debug.LogError(error);
             return;
         }
+        Debug.Log("Consent form success loaded with status: " + ConsentInformation.ConsentStatus);
         
         if(ConsentInformation.ConsentStatus == ConsentStatus.Required)
         {
@@ -78,6 +96,7 @@ public class UMPHandler
         }
         else if (ConsentInformation.ConsentStatus == ConsentStatus.Obtained)
         {
+            Log("User has given consent!");
             OnConsent?.Invoke();
         }
         // You are now ready to show the form.
@@ -91,6 +110,8 @@ public class UMPHandler
             UnityEngine.Debug.LogError(error);
             return;
         }
+        
+        Log("Consent form success shown");
 
         // Handle dismissal by reloading form.
         LoadConsentForm();
@@ -99,6 +120,7 @@ public class UMPHandler
     public void Reset()
     {
         ConsentInformation.Reset();
+        Log("Consent was withdrawn!");
     }
     
 
