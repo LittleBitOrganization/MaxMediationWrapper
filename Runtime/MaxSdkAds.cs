@@ -1,8 +1,8 @@
-using LittleBit.Modules.CoreModule;
 using LittleBitGames.Ads.Configs;
 using LittleBitGames.Ads.MediationNetworks.MaxSdk;
 using LittleBitGames.Environment.Ads;
 using UnityEngine;
+using UnityEngine.Scripting;
 
 namespace LittleBitGames.Ads
 {
@@ -13,7 +13,9 @@ namespace LittleBitGames.Ads
         private readonly ICreator _creator;
         private IAdsService _adsService;
 
-        public MaxSdkAds(ICreator creator, ICoroutineRunner coroutineRunner)
+        
+        [Preserve]
+        public MaxSdkAds(ICreator creator)
         {
             _creator = creator;
             
