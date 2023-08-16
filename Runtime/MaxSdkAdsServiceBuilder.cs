@@ -4,6 +4,7 @@ using LittleBitGames.Ads.AdUnits;
 using LittleBitGames.Ads.Configs;
 using LittleBitGames.Ads.MediationNetworks.MaxSdk;
 using LittleBitGames.Environment.Ads;
+using UnityEngine.Scripting;
 
 namespace LittleBitGames.Ads
 {
@@ -17,6 +18,7 @@ namespace LittleBitGames.Ads
 
         public IMediationNetworkInitializer Initializer => _initializer;
 
+        [Preserve]
         public MaxSdkAdsServiceBuilder(AdsConfig adsConfig, ICoroutineRunner coroutineRunner)
         {
             _adsConfig = adsConfig;
