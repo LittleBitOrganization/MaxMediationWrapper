@@ -57,6 +57,7 @@ public class UMPHandler
     {
         if (error != null)
         {
+            Log("OnConsentInfoUpdated Error" + error.ErrorCode + "  " + error.Message);
             Debug.LogError(error);
             return;
         }
@@ -85,6 +86,7 @@ public class UMPHandler
       
         if (error != null)
         {
+            Log("OnLoadConsentForm Error" + error.ErrorCode + "  " + error.Message);
             Debug.LogError(error);
             return;
         }
@@ -106,7 +108,7 @@ public class UMPHandler
     {
         if (error != null)
         {
-            // Handle the error.
+            Log("OnShowForm Error" + error.ErrorCode + "  " + error.Message);
             UnityEngine.Debug.LogError(error);
             return;
         }
