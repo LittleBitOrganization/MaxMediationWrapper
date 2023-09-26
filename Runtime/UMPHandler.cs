@@ -10,6 +10,7 @@ public class UMPHandler
     private readonly bool _isDebugMode;
 
     public event Action OnConsent;
+    public event Action OnConsentFail;
 
     private void Log(string value)
     {
@@ -59,10 +60,10 @@ public class UMPHandler
         {
             Log("OnConsentInfoUpdated Error" + error.ErrorCode + "  " + error.Message);
             Debug.LogError(error);
+            OnConsentFail?.Invoke();
             return;
         }
-            
-     
+        
         if (ConsentInformation.IsConsentFormAvailable())
         {
             Log("Consent Information is available");
@@ -71,8 +72,8 @@ public class UMPHandler
         else
         {
             Log("Consent Information isn't available");
+            OnConsentFail?.Invoke();
         }
-     
     }
 
     private void LoadConsentForm()
@@ -90,12 +91,14 @@ public class UMPHandler
             Debug.LogError(error);
             return;
         }
+        
         Debug.Log("Consent form success loaded with status: " + ConsentInformation.ConsentStatus);
         
         if(ConsentInformation.ConsentStatus == ConsentStatus.Required)
         {
             consentForm.Show(OnShowForm);
         }
+        
         else if (ConsentInformation.ConsentStatus == ConsentStatus.Obtained)
         {
             Log("User has given consent!");
@@ -124,6 +127,4 @@ public class UMPHandler
         ConsentInformation.Reset();
         Log("Consent was withdrawn!");
     }
-    
-
 }

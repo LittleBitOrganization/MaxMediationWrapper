@@ -28,6 +28,11 @@ namespace LittleBitGames.Ads.MediationNetworks.MaxSdk
                     global::MaxSdk.SetHasUserConsent(true);
                     Init();
                 };
+                umpHandler.OnConsentFail += () =>
+                {
+                    global::MaxSdk.SetHasUserConsent(false);
+                    Init();
+                };
                 umpHandler.Init();
             }
             
