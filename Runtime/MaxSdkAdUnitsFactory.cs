@@ -33,5 +33,9 @@ namespace LittleBitGames.Ads
 
             return key;
         }
+
+        public IAdUnit CreateBannerAdUnit()=>
+            new MaxSdkBannerAd(GetKey(_adsConfig.MaxSettings.PlatformSettings.MaxBannerAdUnitKey), _coroutineRunner);
+        
     }
 }

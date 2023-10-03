@@ -13,7 +13,7 @@ namespace LittleBitGames.Ads
         private readonly MaxSdkAdUnitsFactory _adUnitsFactory;
         private readonly MaxSdkInitializer _initializer;
 
-        private IAdUnit _inter, _rewarded;
+        private IAdUnit _inter, _rewarded,_banner;
         private AdsConfig _adsConfig;
 
         public IMediationNetworkInitializer Initializer => _initializer;
@@ -37,6 +37,8 @@ namespace LittleBitGames.Ads
                 BuildInterAdUnit();
             if (!string.IsNullOrEmpty(_adsConfig.MaxSettings.PlatformSettings.MaxRewardedAdUnitKey) && _adsConfig.IsRewarded) 
                 BuildRewardedAdUnit();
+            if (!string.IsNullOrEmpty(_adsConfig.MaxSettings.PlatformSettings.MaxBannerAdUnitKey) && _adsConfig.IsBanner) 
+                BuildBannerAdUnit();
 
             return GetResult();
         }
@@ -46,7 +48,9 @@ namespace LittleBitGames.Ads
 
         public void BuildRewardedAdUnit() =>
             _rewarded = _adUnitsFactory.CreateRewardedAdUnit();
+        public void BuildBannerAdUnit() =>
+            _banner = _adUnitsFactory.CreateBannerAdUnit();
 
-        public IAdsService GetResult() => new AdsService(_initializer, _inter, _rewarded);
+        public IAdsService GetResult() => new AdsService(_initializer, _inter, _rewarded, _banner);
     }
 }
