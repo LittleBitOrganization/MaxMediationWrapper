@@ -16,26 +16,7 @@ namespace LittleBitGames.Ads.MediationNetworks.MaxSdk
 
         public void Initialize()
         {
-            if (_config.UmpSettings.IsEnable == false)
-            {
-                Init();
-            }
-            else
-            {
-                UMPHandler umpHandler = new UMPHandler(_config.UmpSettings, IsDebugMode);
-                umpHandler.OnConsent += () =>
-                {
-                    global::MaxSdk.SetHasUserConsent(true);
-                    Init();
-                };
-                umpHandler.OnConsentFail += () =>
-                {
-                    global::MaxSdk.SetHasUserConsent(false);
-                    Init();
-                };
-                umpHandler.Init();
-            }
-            
+            Init();
         }
 
         private void Init()
