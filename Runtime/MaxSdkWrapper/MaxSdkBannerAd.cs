@@ -25,6 +25,7 @@ namespace LittleBitGames.Ads.MediationNetworks.MaxSdk
             Events.OnAdLoaded += OnLoaded;
             global::MaxSdk.CreateBanner(_key.StringValue, MaxSdkBase.BannerPosition.BottomCenter);
             global::MaxSdk.SetBannerExtraParameter(_key.StringValue, "adaptive_banner", "true");
+            global::MaxSdk.StartBannerAutoRefresh(_key.StringValue);
         }
         private void OnLoaded(string arg1, IAdInfo arg2)
         {
@@ -34,6 +35,9 @@ namespace LittleBitGames.Ads.MediationNetworks.MaxSdk
         protected override bool IsAdReady() => _isAdReady;
 
         protected override void ShowAd() => global::MaxSdk.ShowBanner(_key.StringValue);
-        public override void Load() => global::MaxSdk.LoadBanner(_key.StringValue);
+        public override void Load()
+        {
+            
+        }
     }
 }
