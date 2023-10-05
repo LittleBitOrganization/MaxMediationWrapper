@@ -14,16 +14,23 @@ namespace LittleBitGames.Ads.MediationNetworks.MaxSdk
 
         {
             _key = key;
+            if (global::MaxSdk.IsInitialized())
+                Init(null);
+            else
+                global::MaxSdkCallbacks.OnSdkInitializedEvent += Init;
+        }
+        private void Init(MaxSdkBase.SdkConfiguration sdkConfiguration)
+        {
+            global::MaxSdkCallbacks.OnSdkInitializedEvent -= Init;
+            Events.OnAdLoaded += OnLoaded;
             global::MaxSdk.CreateBanner(_key.StringValue, MaxSdkBase.BannerPosition.BottomCenter);
             global::MaxSdk.SetBannerExtraParameter(_key.StringValue, "adaptive_banner", "true");
-            Events.OnAdLoaded += OnLoaded;
         }
-
         private void OnLoaded(string arg1, IAdInfo arg2)
         {
             _isAdReady = true;
+            Events.OnAdLoaded -= OnLoaded;
         }
-
         protected override bool IsAdReady() => _isAdReady;
 
         protected override void ShowAd() => global::MaxSdk.ShowBanner(_key.StringValue);
