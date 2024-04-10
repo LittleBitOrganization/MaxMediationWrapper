@@ -1,5 +1,6 @@
 using System;
 using LittleBitGames.Ads.Configs;
+using LittleBitGames.Environment;
 using LittleBitGames.Environment.Ads;
 
 namespace LittleBitGames.Ads.MediationNetworks.MaxSdk
