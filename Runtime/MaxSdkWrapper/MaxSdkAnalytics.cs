@@ -4,6 +4,7 @@ using LittleBitGames.Ads.AdUnits;
 using LittleBitGames.Ads.Collections.Extensions;
 using LittleBitGames.Environment.Ads;
 using LittleBitGames.Environment.Events;
+using UnityEngine;
 using UnityEngine.Scripting;
 
 namespace LittleBitGames.Ads.MediationNetworks.MaxSdk
@@ -51,6 +52,11 @@ namespace LittleBitGames.Ads.MediationNetworks.MaxSdk
         private void OnAdRevenuePaid(string adUnitId, MaxSdkBase.AdInfo adInfo, AdType adType)
         {
             var ad = _adUnits.FindByKey(adUnitId);
+            if (ad == null)
+            {
+                Debug.LogWarning($"Ad unit {adUnitId} not found in adUnits list in MaxSdkAnalytics");
+                return;
+            }
             
             var adImpressionEvent = new DataEventAdImpression(
                 new SdkSource(SdkSourceName),
