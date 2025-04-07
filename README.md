@@ -4,7 +4,7 @@
 Рекламная сеть Applovin
 
 ```json
-"com.littlebitgames.maxsdk" : "git@github.com:LittleBitOrganization/MaxMediationWrapper.git#",
+"com.littlebitgames.maxsdk" : "https://github.com/LittleBitOrganization/MaxMediationWrapper.git#8.2.0",
 ```
 ```json
 "scopedRegistries": [
