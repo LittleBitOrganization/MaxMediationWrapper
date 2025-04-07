@@ -8,14 +8,14 @@
 ```
 ```json
 "scopedRegistries": [
-{
-"name": "AppLovin MAX Unity",
-"url": "https://unity.packages.applovin.com/",
-"scopes": [
-"com.applovin.mediation.ads",
-"com.applovin.mediation.adapters",
-"com.applovin.mediation.dsp"
-]
-}
+  {
+    "name": "AppLovin MAX Unity",
+    "url": "https://unity.packages.applovin.com/",
+    "scopes": [
+      "com.applovin.mediation.ads",
+      "com.applovin.mediation.adapters",
+      "com.applovin.mediation.dsp"
+    ]
+  }
 ]
 ```
